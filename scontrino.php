@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+ini_set('display_errors', '0');
+
 //Dati cliente
 $nome = $_POST['nome'];
 $cognome = $_POST['cognome'];
@@ -9,15 +12,15 @@ $contapizza = $_POST['contatorepizza'];
 //Array per dopo usarle nel for e calcolare il conto
 $pizzescelta = [];
 $pizzescelta[0] = $_POST['pizza'];
-for($i=0; $i<=$contapizza; $i++){
+for($i=1; $i<=$contapizza; $i++){
     $pizzescelta[$i] = $_POST['pizza' . $i];
 }
 $prezzi = ["Margherita 7$" => 7, "Diavola 9$" => 9, "Patatosa 8$" => 8, "Marinara 8$" => 8,];
 
 $quantita = [];
-$quantita = $_POST['qt'];
-for( $i=0; i<=$contapizza; $i++){
-    $quantita = $_POST['qt' . $i]
+$quantita[0] = $_POST['qt'];
+for( $i=1; $i<=$contapizza; $i++){
+    $quantita[$i] = $_POST['qt' . $i];
 }
 
 
@@ -35,9 +38,11 @@ for ($i = 0; $i < $contapizza+1; $i++) {
 echo "Nome: $nome<br>";
 echo "Cognome: $cognome<br>";
 echo "Pizze ordinate:<br>";
-for ($i = 0; $i < $contapizza; $i++) {
+for ($i = 0; $i < $contapizza+1; $i++) {
     echo "{$pizzescelta[$i]} x{$quantita[$i]}<br>";
 }
 echo "<br>Il tuo conto è: $conto$<br>";
+
+
 
 ?>
